@@ -1,6 +1,6 @@
 require 'pry'
 class Song
-  attr_accessor :name, :artist_name
+  attr_accessor :name, :artist_name,:create
   @@all = []
   
   
@@ -41,6 +41,13 @@ class Song
   def self.find_or_create_by_name(song_name)
     self.find_by_name(song_name) || self.create_by_name(song_name)
     #binding.pry
+
+    @@all.detect { |i| i.name == song_name}
+    end
+    
+  def self.find_or_create_by_name(name)
+    self.find_by_name(name) || self.create_by_name(name)
+    #binding.pry
   end
     
   def self.alphabetical
@@ -55,7 +62,10 @@ class Song
   def self.create_from_file_name
     end
     
-  def self.destroy_all
-    end 
+  #def self.destroy_all
+   # @@all.each do |i| i == self
+    #@all.pop(i)
+  #end
+   # end 
   
 end
