@@ -51,21 +51,32 @@ class Song
   end
     
   def self.alphabetical
-    @@all.sort { |a,b| a.name <=> b.name}
+    @@all.sort_by { |i| i.name}
     
     end
     
-  def self.new_from_filename(file)
-    @song 
-    end
-    
-  def self.create_from_file_name
-    end
-    
-  #def self.destroy_all
-   # @@all.each do |i| i == self
-    #@all.pop(i)
-  #end
-   # end 
+  def self.new_from_filename(filename)
+    song_arr = filename.split(" - ")
+    song_arr[1] = song_arr[1].chomp(".mp3")
+    song = self.new
+    song.name = song_arr[1]
+    song.artist_name = song_arr[0]
+    song 
   
+    end
+    
+  def self.create_from_filename(name)
+    song_arr = name.split(" - ")
+    song_arr[1] = song_arr[1].chomp(".mp3")
+    song = self.new
+    song.name = song_arr[1]
+    song.artist_name = song_arr[0]
+    song.save 
+    song 
+   
+    end
+    
+  def self.destroy_all
+    self.all.clear
+end
 end
